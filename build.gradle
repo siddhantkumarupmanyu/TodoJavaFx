@@ -1,0 +1,33 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.9'
+}
+
+group 'sku.todo'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation("junit:junit:4.13")
+    testCompile group: 'org.hamcrest', name: 'hamcrest', version: '2.1'
+    testCompile "org.testfx:testfx-core:4.0.15-alpha"
+    testCompile "org.testfx:testfx-junit:4.0.15-alpha"
+}
+
+test {
+    // https://blog.jdriven.com/2017/10/run-one-or-exclude-one-test-with-gradle/
+    if (project.hasProperty('excludeTests')) {
+        exclude project.property('excludeTests')
+    }
+}
+
+javafx {
+    version = "16"
+    modules = ['javafx.controls', 'javafx.fxml']
+}
+
+mainClassName = 'sku.todo.MainApp'

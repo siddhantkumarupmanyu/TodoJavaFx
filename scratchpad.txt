@@ -1,0 +1,10 @@
+
+- add item, show single item
+- add item, show multiple items
+- delete item
+- add persistence with java database
+
+Ui Enhancements
+- able to delete item by right clicking and selecting delete from context menu
+- able to select items by long pressing left mouse
+- delete button pops up after selecting multiple items

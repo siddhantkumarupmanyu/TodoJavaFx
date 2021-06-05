@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+<Pane xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="sku.todo.MainSceneController">
+
+    <TextField layoutX="15.0" layoutY="25.0" fx:id="heading_input"/>
+    <TextField layoutX="15.0" layoutY="50.0" fx:id="content_input"/>
+    <Label layoutX="15.0" layoutY="84.0" text="TEXT GOES HERE" fx:id="heading_label"/>
+    <Label layoutX="15.0" layoutY="104.0" text="TEXT GOES HERE" fx:id="content_label"/>
+    <Button layoutX="124.0" layoutY="160.0" mnemonicParsing="false" text="Apply" onAction="#applyButtonClicked"
+            fx:id="applyButton"/>
+</Pane>
