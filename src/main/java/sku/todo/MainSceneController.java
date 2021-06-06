@@ -1,22 +1,28 @@
 package sku.todo;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.ListView;
 
 public class MainSceneController {
 
-    public TextField heading_input;
-    public TextField content_input;
-    public Label heading_label;
-    public Label content_label;
+    @FXML
+    private ListView<?> list_view;
 
-    public Button applyButton;
+    @FXML
+    private Button add_button;
 
-    public void applyButtonClicked(ActionEvent actionEvent) {
-        setTextOnLabel(heading_label, heading_input.getText());
-        setTextOnLabel(content_label, content_input.getText());
+    @FXML
+    private Label heading;
+
+    @FXML
+    private Label content;
+
+    @FXML
+    void applyButtonClicked(ActionEvent event) {
+        // open the add stage
     }
 
     private void setTextOnLabel(Label label, String text) {
