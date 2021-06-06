@@ -6,6 +6,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.*;
 
 public class MainSceneModelTest {
@@ -27,9 +28,11 @@ public class MainSceneModelTest {
     public void initializesTheItems() {
         final Database database1 = mock(Database.class);
 
-        when(database.getItems()).thenReturn(items);
+        when(database1.getItems()).thenReturn(items);
 
         final MainSceneModel model1 = new MainSceneModel(database1);
+
+        assertTrue("Item's Observable List should be initialized", model1.items.containsAll(items));
 
         verify(database1, atLeastOnce()).getItems();
     }
@@ -41,6 +44,8 @@ public class MainSceneModelTest {
         items.add(new Item("heading2", "content2"));
 
         model.dataChanged();
+
+        assertTrue("Item's Observable List should be updated", model.items.containsAll(items));
 
         verify(database).addListener(model);
         verify(database, atLeast(2)).getItems();
