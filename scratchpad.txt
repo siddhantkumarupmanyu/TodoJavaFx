@@ -8,3 +8,23 @@ Ui Enhancements
 - able to delete item by right clicking and selecting delete from context menu
 - able to select items by long pressing left mouse
 - delete button pops up after selecting multiple items
+
+
+============================================================================================
+
+create a facade for storing data
+    - inject it into AddDialogSceneController
+    - create a mainmodel
+    - inject it into mainmodel
+    - mainmodel uses this facade to get items
+
+
+
+
+============================================================================================
+NOTES:
+
+I think Mockito have more understandability that JMock. Surely, Jmock have greater readability but
+if I see Mockito also have decent readability with much more understandability.
+
+I think Mockito reports the test failure in much understanding and readable way than JMock.
