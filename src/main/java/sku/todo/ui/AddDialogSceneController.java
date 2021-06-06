@@ -1,4 +1,4 @@
-package sku.todo;
+package sku.todo.ui;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

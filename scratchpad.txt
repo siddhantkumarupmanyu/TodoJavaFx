@@ -12,11 +12,17 @@ Ui Enhancements
 
 ============================================================================================
 
-create a facade for storing data
-    - inject it into AddDialogSceneController
-    - create a mainmodel
-    - inject it into mainmodel
-    - mainmodel uses this facade to get items
+
+
+
+
+
+
+
+
+
+
+
 
 
 
