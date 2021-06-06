@@ -6,18 +6,18 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
-public class AddSceneController {
+public class AddDialogSceneController {
     @FXML
-    private Button add_button;
+    private Button dialog_add_button;
 
     @FXML
-    private TextArea content;
+    private TextArea dialog_content_textarea;
 
     @FXML
-    private TextField heading;
+    private TextField dialog_heading_textfield;
 
     @FXML
     void addButtonClicked(ActionEvent event) {
-        // todo add item
+
     }
 }
