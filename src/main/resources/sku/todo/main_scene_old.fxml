@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.Pane?>
 <Pane xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
-      fx:controller="sku.todo.MainSceneController">
+      fx:controller="sku.todo.ui.MainSceneController">
 
     <TextField layoutX="15.0" layoutY="25.0" fx:id="heading_input"/>
     <TextField layoutX="15.0" layoutY="50.0" fx:id="content_input"/>

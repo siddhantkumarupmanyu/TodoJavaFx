@@ -1,7 +1,9 @@
-package sku.todo;
+package sku.todo.ui;
 
 import org.junit.Before;
 import org.junit.Test;
+import sku.todo.Database;
+import sku.todo.Item;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +24,6 @@ public class MainSceneModelTest {
     public void setUp() {
         items.add(item);
     }
-
 
     @Test
     public void initializesTheItems() {

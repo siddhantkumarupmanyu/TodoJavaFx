@@ -1,4 +1,4 @@
-package sku.todo;
+package sku.todo.utils;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.InvocationTargetException;

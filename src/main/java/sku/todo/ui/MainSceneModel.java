@@ -1,7 +1,10 @@
-package sku.todo;
+package sku.todo.ui;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import sku.todo.Database;
+import sku.todo.DatabaseListener;
+import sku.todo.Item;
 
 public class MainSceneModel implements DatabaseListener {
 
