@@ -12,6 +12,8 @@ Ui Enhancements
 
 ============================================================================================
 
+if all tests are run dependency injection fails.
+
 should model be created each time the controller is constructed or it should be passed on?
     - for this simple app this does not matter.
     - for this app, I am just passing same model.

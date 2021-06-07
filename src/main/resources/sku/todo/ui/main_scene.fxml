@@ -54,7 +54,7 @@
         </AnchorPane>
       <AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0">
         <children>
-            <Label fx:id="main_heading" alignment="CENTER" style="&#10;" text="Heading" textAlignment="CENTER" wrapText="false" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
+            <Label fx:id="main_heading" alignment="CENTER" style="&#10;" text="Heading Placeholder" textAlignment="CENTER" wrapText="false" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
                      <font>
                 <Font size="18.0" />
                      </font>
@@ -62,7 +62,7 @@
                 <Color red="0.624" green="0.624" blue="0.624" />
                      </textFill>
                   </Label>
-                  <Label fx:id="main_content" alignment="TOP_LEFT" style="&#10;" text="Content" textAlignment="CENTER" wrapText="false" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="46.0">
+                  <Label fx:id="main_content" alignment="TOP_LEFT" style="&#10;" text="Content Placeholder" textAlignment="CENTER" wrapText="false" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="46.0">
                      <font>
                         <Font size="18.0" />
                      </font>

@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class AddDialogSceneController {
 
@@ -25,6 +26,12 @@ public class AddDialogSceneController {
 
     @FXML
     void addButtonClicked(ActionEvent event) {
+        model.addItem(dialog_heading_textfield.getText(), dialog_content_textarea.getText());
+        closeStage();
+    }
 
+    private void closeStage() {
+        Stage stage = (Stage) dialog_add_button.getScene().getWindow();
+        stage.close();
     }
 }

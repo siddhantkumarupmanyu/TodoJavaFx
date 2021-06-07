@@ -12,7 +12,7 @@ public class MainSceneModel implements DatabaseListener {
     // I do not know if should use ObservableList in Model as I think Model is a domain level concept it should
     // not interact with framework components, on the other hand I would have to implement a mechanism for
     // propagating change back to controller too, so why not just use this only.
-    public ObservableList<Item> items = FXCollections.observableArrayList();
+    public final ObservableList<Item> items = FXCollections.observableArrayList();
 
     private final Database database;
 

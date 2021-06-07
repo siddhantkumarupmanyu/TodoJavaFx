@@ -4,8 +4,8 @@ import java.util.Objects;
 
 public class Item {
 
-    private final String heading;
-    private final String content;
+    public final String heading;
+    public final String content;
 
     public Item(String heading, String content) {
         this.heading = heading;

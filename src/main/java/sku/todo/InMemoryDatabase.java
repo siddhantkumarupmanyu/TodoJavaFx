@@ -7,9 +7,9 @@ import java.util.List;
 
 public class InMemoryDatabase implements Database {
 
-    private ArrayList<Item> items = new ArrayList<>();
+    private final ArrayList<Item> items = new ArrayList<>();
 
-    private Announcer<DatabaseListener> listeners = Announcer.to(DatabaseListener.class);
+    private final Announcer<DatabaseListener> listeners = Announcer.to(DatabaseListener.class);
 
     @Override
     public void addItem(Item item) {
