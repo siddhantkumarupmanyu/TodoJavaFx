@@ -31,29 +31,29 @@ public class ApplicationDriver extends ApplicationTest {
     }
 
     public void isShowingItem(String heading, String content) {
-        // TODO: refactor this method
-
         assertThat("Add stage/window should be closed", listWindows().size(), is(equalTo(1)));
 
-        ListView<Item> itemsList = lookup("#main_list_view").query();
+        ListView<Item> itemListView = lookup("#main_list_view").query();
 
-        ObservableList<Item> items = itemsList.getItems();
+        ObservableList<Item> items = itemListView.getItems();
         assertThat(items.size(), is(equalTo(1)));
 
         assertThat(items.get(0), is(equalTo(new Item(heading, content))));
 
-        clickOn(itemsList);
-
-        press(KeyCode.DOWN);
-        release(KeyCode.DOWN);
-        press(KeyCode.ENTER);
-        release(KeyCode.ENTER);
-
+        selectTheFirstItem(itemListView);
 
         Label headingLabel = lookup("#main_heading").query();
         Label contentLabel = lookup("#main_content").query();
 
         assertThat(headingLabel.getText(), is(heading));
         assertThat(contentLabel.getText(), is(content));
+    }
+
+    private void selectTheFirstItem(ListView<Item> itemsList) {
+        clickOn(itemsList);
+        press(KeyCode.DOWN);
+        release(KeyCode.DOWN);
+        press(KeyCode.ENTER);
+        release(KeyCode.ENTER);
     }
 }
