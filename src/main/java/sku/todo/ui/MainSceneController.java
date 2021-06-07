@@ -1,15 +1,13 @@
 package sku.todo.ui;
 
+import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import sku.todo.DependencyInjection;
@@ -30,15 +28,47 @@ public class MainSceneController {
         main_list_view.setItems(model.items);
 
         // I do not know how to test this
-        main_list_view.setCellFactory(param -> new HeadingOnlyCell());
+        main_list_view.setCellFactory(param -> {
+            // todo: remove spikes
+            ListCell<Item> cell = new HeadingOnlyCell();
+
+            ContextMenu contextMenu = new ContextMenu();
+
+
+            MenuItem editItem = new MenuItem();
+            editItem.textProperty().bind(Bindings.format("Edit \"%s\"", cell.itemProperty()));
+            editItem.setOnAction(event -> {
+                Item item = cell.getItem();
+                // code to edit item...
+            });
+            MenuItem deleteItem = new MenuItem();
+            deleteItem.textProperty().bind(Bindings.format("Delete \"%s\"", cell.itemProperty()));
+            deleteItem.setOnAction(event -> param.getItems().remove(cell.getItem()));
+            contextMenu.getItems().addAll(editItem, deleteItem);
+
+//            cell.textProperty().bind(cell.itemProperty());
+
+            cell.emptyProperty().addListener((obs, wasEmpty, isNowEmpty) -> {
+                if (isNowEmpty) {
+                    cell.setContextMenu(null);
+                } else {
+                    cell.setContextMenu(contextMenu);
+                }
+            });
+            return cell;
+        });
 
         main_list_view.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Item>() {
             @Override
             public void changed(ObservableValue<? extends Item> observable, Item oldValue, Item newValue) {
-                main_heading.setText(newValue.heading);
-                main_content.setText(newValue.content);
+                if (newValue != null) {
+                    main_heading.setText(newValue.heading);
+                    main_content.setText(newValue.content);
+                }
             }
         });
+
+
     }
 
     @FXML
