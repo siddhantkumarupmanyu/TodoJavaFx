@@ -15,6 +15,16 @@ import java.io.IOException;
 
 public class MainSceneController {
 
+    private final MainSceneModel model;
+
+    public MainSceneController(MainSceneModel model) {
+        this.model = model;
+    }
+
+    public MainSceneController(){
+        this.model = null;
+    }
+
     @FXML
     private ListView<?> main_list_view;
 

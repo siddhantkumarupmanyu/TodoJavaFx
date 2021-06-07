@@ -12,7 +12,7 @@ Ui Enhancements
 
 ============================================================================================
 
-
+implement DependencyInjection with tests.
 
 
 
@@ -29,6 +29,8 @@ Ui Enhancements
 
 ============================================================================================
 NOTES:
+
+note the difference between callable and callback. In DependencyInjection class.
 
 I think Mockito have more understandability that JMock. Surely, Jmock have greater readability but
 if I see Mockito also have decent readability with much more understandability.
