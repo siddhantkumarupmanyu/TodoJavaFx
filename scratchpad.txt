@@ -1,6 +1,6 @@
 
-- add item, show single item
-- add item, show multiple items
+- add item, show single item ==> done
+- add item, show multiple items ==> done
 - delete item
 - add persistence with java database
 
@@ -11,6 +11,9 @@ Ui Enhancements
 
 
 ============================================================================================
+
+bug: not mine though, it's JavaFx's one if I am right.
+    - when new item is added with a item selected in listview, list view throws a null pointer exception
 
 should model be created each time the controller is constructed or it should be passed on?
     - for this simple app this does not matter.

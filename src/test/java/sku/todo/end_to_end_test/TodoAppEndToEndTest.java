@@ -15,6 +15,19 @@ public class TodoAppEndToEndTest {
     @Test
     public void addSingleItem() {
         application.addItem("Heading", "content");
-        application.isShowingItem("Heading", "content");
+        application.isShowingItem("Heading", "content", 0);
+    }
+
+    @Test
+    public void addMultipleItems() {
+        application.addItem("Heading1", "Content1");
+        application.addItem("Heading2", "Content2");
+        application.addItem("Heading3", "Content3");
+
+        application.itemCount(3);
+        application.isShowingItem("Heading1", "Content1", 0);
+        application.isShowingItem("Heading2", "Content2", 1);
+        application.isShowingItem("Heading3", "Content3", 2);
+
     }
 }

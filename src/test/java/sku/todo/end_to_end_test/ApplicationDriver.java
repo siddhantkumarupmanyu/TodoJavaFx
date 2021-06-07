@@ -1,6 +1,5 @@
 package sku.todo.end_to_end_test;
 
-import javafx.collections.ObservableList;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.input.KeyCode;
@@ -30,17 +29,14 @@ public class ApplicationDriver extends ApplicationTest {
         clickOn("#dialog_add_button");
     }
 
-    public void isShowingItem(String heading, String content) {
+    public void isShowingItem(String heading, String content, int index) {
         assertThat("Add stage/window should be closed", listWindows().size(), is(equalTo(1)));
 
-        ListView<Item> itemListView = lookup("#main_list_view").query();
+        ListView<Item> listViewItems = getMainListView();
 
-        ObservableList<Item> items = itemListView.getItems();
-        assertThat(items.size(), is(equalTo(1)));
+        assertThat(listViewItems.getItems().get(index), is(equalTo(new Item(heading, content))));
 
-        assertThat(items.get(0), is(equalTo(new Item(heading, content))));
-
-        selectTheFirstItem(itemListView);
+        selectItem(index, listViewItems);
 
         Label headingLabel = lookup("#main_heading").query();
         Label contentLabel = lookup("#main_content").query();
@@ -49,11 +45,21 @@ public class ApplicationDriver extends ApplicationTest {
         assertThat(contentLabel.getText(), is(content));
     }
 
-    private void selectTheFirstItem(ListView<Item> itemsList) {
+    public void itemCount(int count) {
+        assertThat(getMainListView().getItems().size(), is(equalTo(count)));
+    }
+
+    private void selectItem(int index, ListView<Item> itemsList) {
         clickOn(itemsList);
-        press(KeyCode.DOWN);
-        release(KeyCode.DOWN);
+        for (int i = 0; i < index; i++) {
+            press(KeyCode.DOWN);
+            release(KeyCode.DOWN);
+        }
         press(KeyCode.ENTER);
         release(KeyCode.ENTER);
+    }
+
+    private ListView<Item> getMainListView() {
+        return lookup("#main_list_view").query();
     }
 }
