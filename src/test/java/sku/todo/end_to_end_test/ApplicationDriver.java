@@ -31,6 +31,8 @@ public class ApplicationDriver extends ApplicationTest {
     }
 
     public void isShowingItem(String heading, String content) {
+        // TODO: refactor this method
+
         assertThat("Add stage/window should be closed", listWindows().size(), is(equalTo(1)));
 
         ListView<Item> itemsList = lookup("#main_list_view").query();

@@ -12,8 +12,6 @@ Ui Enhancements
 
 ============================================================================================
 
-if all tests are run dependency injection fails.
-
 should model be created each time the controller is constructed or it should be passed on?
     - for this simple app this does not matter.
     - for this app, I am just passing same model.
@@ -36,6 +34,10 @@ should model be created each time the controller is constructed or it should be 
 
 ============================================================================================
 NOTES:
+
+I do not know what happened in DependencyInjectionTest when i swapped MainSceneController with TestController.
+    - Now it does not require require Toolkit to be initialized.
+    - Meaning Platform.start() & Platform.exit() can be removed. WOW.
 
 note the difference between callable and callback. In DependencyInjection class.
 

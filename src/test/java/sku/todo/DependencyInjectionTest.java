@@ -1,14 +1,9 @@
 package sku.todo;
 
-import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.Pane;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
 import org.junit.Test;
-import sku.todo.ui.MainSceneController;
-import sku.todo.ui.MainSceneModel;
 import sku.todo.ui.TestSceneController;
 
 import java.io.IOException;
@@ -20,31 +15,18 @@ import static org.hamcrest.Matchers.is;
 // This is a integration Test
 public class DependencyInjectionTest {
 
-    @BeforeClass
-    public static void setUp() {
-        Platform.startup(() -> {
-            // https://stackoverflow.com/a/53760312
-            // This block will be executed on JavaFX Thread
-        });
-    }
-
-    @AfterClass
-    public static void tearDown() {
-        Platform.exit();
-    }
-
     @Test
     public void loadControllerWithSavedMethod() throws IOException {
-        final MainSceneController mainSceneController = new MainSceneController(new MainSceneModel(new InMemoryDatabase()));
-        Callable<MainSceneController> mainSceneControllerMethod = () -> mainSceneController;
+        final TestSceneController testSceneController = new TestSceneController(5);
+        Callable<TestSceneController> testSceneControllerFactory = () -> testSceneController;
 
-        DependencyInjection.addInjection(MainSceneController.class, mainSceneControllerMethod);
+        DependencyInjection.addInjection(TestSceneController.class, testSceneControllerFactory);
 
-        FXMLLoader mainSceneLoader = DependencyInjection.getLoader("main_scene.fxml");
-        mainSceneLoader.load();
+        FXMLLoader loader = DependencyInjection.getLoader("test_scene.fxml");
+        loader.load();
 
-        assertThat(mainSceneLoader.getController().getClass(), is(MainSceneController.class));
-        assertThat(mainSceneLoader.getController(), is(mainSceneController));
+        assertThat(loader.getController().getClass(), is(TestSceneController.class));
+        assertThat(loader.getController(), is(testSceneController));
     }
 
     @Test
@@ -63,7 +45,10 @@ public class DependencyInjectionTest {
 }
 
 // Since, DependencyInjection class incorporates JavaFx classes we will call this a integration test
-// After Including Platform.start and exit this is definitely a integration test
 
 // references: https://edencoding.com/dependency-injection/
+
 // https://stackoverflow.com/questions/11273773/javafx-2-1-toolkit-not-initialized
+// https://stackoverflow.com/a/53760312
+//  - IDK, but now it does not require it.
+//  - Still just for future note.
