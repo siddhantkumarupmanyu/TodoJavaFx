@@ -2,7 +2,6 @@ package sku.todo.ui;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -10,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import sku.todo.DependencyInjection;
 
 import java.io.IOException;
 
@@ -19,10 +19,6 @@ public class MainSceneController {
 
     public MainSceneController(MainSceneModel model) {
         this.model = model;
-    }
-
-    public MainSceneController(){
-        this.model = null;
     }
 
     @FXML
@@ -39,7 +35,7 @@ public class MainSceneController {
 
     @FXML
     void applyButtonClicked(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("add_dialog_scene.fxml"));
+        Parent root = DependencyInjection.load("add_dialog_scene.fxml");
 
         Stage stage = new Stage();
 

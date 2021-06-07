@@ -7,6 +7,13 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 public class AddDialogSceneController {
+
+    private final AddDialogSceneModel model;
+
+    public AddDialogSceneController(AddDialogSceneModel model) {
+        this.model = model;
+    }
+
     @FXML
     private Button dialog_add_button;
 

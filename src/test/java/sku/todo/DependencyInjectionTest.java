@@ -3,13 +3,13 @@ package sku.todo;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.Pane;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import sku.todo.ui.AddDialogSceneController;
 import sku.todo.ui.MainSceneController;
 import sku.todo.ui.MainSceneModel;
+import sku.todo.ui.TestSceneController;
 
 import java.io.IOException;
 import java.util.concurrent.Callable;
@@ -49,15 +49,15 @@ public class DependencyInjectionTest {
 
     @Test
     public void loadControllerWithDefaultConstructor() throws IOException {
-        FXMLLoader addSceneLoader = DependencyInjection.getLoader("add_dialog_scene.fxml");
-        addSceneLoader.load();
-        assertThat(addSceneLoader.getController().getClass(), is(AddDialogSceneController.class));
+        FXMLLoader testSceneLoader = DependencyInjection.getLoader("test_scene.fxml");
+        testSceneLoader.load();
+        assertThat(testSceneLoader.getController().getClass(), is(TestSceneController.class));
     }
 
     @Test
     public void loadMethod() throws IOException {
-        Parent root = DependencyInjection.load("add_dialog_scene.fxml");
-        assertThat(root.getClass(), is(VBox.class));
+        Parent root = DependencyInjection.load("test_scene.fxml");
+        assertThat(root.getClass(), is(Pane.class));
     }
 
 }

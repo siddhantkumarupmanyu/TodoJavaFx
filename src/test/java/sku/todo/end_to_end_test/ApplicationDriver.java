@@ -1,8 +1,15 @@
 package sku.todo.end_to_end_test;
 
+import javafx.collections.ObservableList;
+import javafx.scene.control.ListView;
 import org.testfx.api.FxToolkit;
 import org.testfx.framework.junit.ApplicationTest;
+import sku.todo.Item;
 import sku.todo.MainApp;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.is;
 
 public class ApplicationDriver extends ApplicationTest {
 
@@ -22,6 +29,11 @@ public class ApplicationDriver extends ApplicationTest {
     }
 
     public void isShowingItem(String heading, String content) {
+        ListView<Item> itemsList = lookup("#main_list_view").query();
+
+        ObservableList<Item> items = itemsList.getItems();
+        assertThat(items.size(), is(equalTo(1)));
+
 //        Label headingLabel = lookup("#heading_label").query();
 //        Label contentLabel = lookup("#content_label").query();
 //
