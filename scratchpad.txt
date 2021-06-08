@@ -1,7 +1,8 @@
 
 - add item, show single item ==> done
 - add item, show multiple items ==> done
-- delete item
+- delete item ==> done
+- edit item
 - add persistence with java database
 
 Ui Enhancements
@@ -11,6 +12,8 @@ Ui Enhancements
 
 
 ============================================================================================
+
+bug: Empty Items should not be added
 
 should model be created each time the controller is constructed or it should be passed on?
     - for this simple app this does not matter.

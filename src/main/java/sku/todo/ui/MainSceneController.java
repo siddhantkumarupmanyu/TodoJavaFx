@@ -34,18 +34,21 @@ public class MainSceneController {
 
             ContextMenu contextMenu = new ContextMenu();
 
-
             MenuItem editItem = new MenuItem();
-            editItem.textProperty().bind(Bindings.format("Edit \"%s\"", cell.itemProperty()));
+            editItem.setId("main_edit_context");
+            editItem.textProperty().bind(Bindings.format("Edit \"%s\"", cell.textProperty()));
             editItem.setOnAction(event -> {
                 Item item = cell.getItem();
                 // code to edit item...
             });
             MenuItem deleteItem = new MenuItem();
-            deleteItem.textProperty().bind(Bindings.format("Delete \"%s\"", cell.itemProperty()));
+            deleteItem.setId("main_delete_context_menu");
+            deleteItem.textProperty().bind(Bindings.format("Delete \"%s\"", cell.textProperty()));
             deleteItem.setOnAction(event -> param.getItems().remove(cell.getItem()));
+
             contextMenu.getItems().addAll(editItem, deleteItem);
 
+            // will be useful for when editing. Do not know let's see
 //            cell.textProperty().bind(cell.itemProperty());
 
             cell.emptyProperty().addListener((obs, wasEmpty, isNowEmpty) -> {

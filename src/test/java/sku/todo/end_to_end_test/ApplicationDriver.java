@@ -1,8 +1,8 @@
 package sku.todo.end_to_end_test;
 
+import javafx.scene.control.Cell;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.input.KeyCode;
 import org.testfx.api.FxToolkit;
 import org.testfx.framework.junit.ApplicationTest;
 import sku.todo.Item;
@@ -36,7 +36,7 @@ public class ApplicationDriver extends ApplicationTest {
 
         assertThat(listViewItems.getItems().get(index), is(equalTo(new Item(heading, content))));
 
-        selectItem(index, listViewItems);
+        clickOn(getListCell(listViewItems, index));
 
         Label headingLabel = lookup("#main_heading").query();
         Label contentLabel = lookup("#main_content").query();
@@ -49,17 +49,33 @@ public class ApplicationDriver extends ApplicationTest {
         assertThat(getMainListView().getItems().size(), is(equalTo(count)));
     }
 
-    private void selectItem(int index, ListView<Item> itemsList) {
-        clickOn(itemsList);
-        for (int i = 0; i < index; i++) {
-            press(KeyCode.DOWN);
-            release(KeyCode.DOWN);
-        }
-        press(KeyCode.ENTER);
-        release(KeyCode.ENTER);
+    public void deleteItem(int index) {
+        ListView<Item> listView = getMainListView();
+
+        Cell<Item> cell0 = getListCell(listView, index);
+
+        rightClickOn(cell0);
+
+        clickOn("#main_delete_context_menu");
+    }
+
+    public void editItem(int index, String editedHeading, String editedContent) {
+        ListView<Item> listView = getMainListView();
+
+        Cell<Item> cell0 = getListCell(listView, index);
+
+        rightClickOn(cell0);
+
+        clickOn("#main_delete_context_menu");
     }
 
     private ListView<Item> getMainListView() {
         return lookup("#main_list_view").query();
+    }
+
+    // https://stackoverflow.com/a/52754518
+    public Cell<Item> getListCell(ListView<Item> list, int index) {
+        Object[] cells = list.lookupAll(".cell").toArray();
+        return (Cell<Item>) cells[index];
     }
 }
