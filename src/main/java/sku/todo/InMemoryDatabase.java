@@ -11,10 +11,19 @@ public class InMemoryDatabase implements Database {
 
     private final Announcer<DatabaseListener> listeners = Announcer.to(DatabaseListener.class);
 
+    private int index = 0;
+
     @Override
     public void addItem(Item item) {
-        items.add(item);
+        Item itemToAdd = new Item(index++, item.heading, item.content);
+        items.add(itemToAdd);
         notifyDataChanged();
+    }
+
+    @Override
+    public void saveEdit(Item editedItem) {
+        items.remove(editedItem.id);
+        items.add(editedItem.id, editedItem);
     }
 
     @Override
