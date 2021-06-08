@@ -28,32 +28,10 @@ public class MainSceneController {
     public void initialize() {
         main_list_view.setItems(model.items);
 
-        // I do not know how to test this
         main_list_view.setCellFactory(param -> {
-
-            // TODO: refactor this code
             ListCell<Item> cell = new HeadingOnlyCell();
 
-            ContextMenu contextMenu = new ContextMenu();
-
-            MenuItem editItem = new MenuItem();
-            editItem.setId("main_edit_context_menu");
-            editItem.textProperty().bind(Bindings.format("Edit \"%s\"", cell.textProperty()));
-            editItem.setOnAction(event -> {
-                Item item = cell.getItem();
-                try {
-                    showAddDialog(item);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            });
-
-            MenuItem deleteItem = new MenuItem();
-            deleteItem.setId("main_delete_context_menu");
-            deleteItem.textProperty().bind(Bindings.format("Delete \"%s\"", cell.textProperty()));
-            deleteItem.setOnAction(event -> model.deleteItem(cell.getItem()));
-
-            contextMenu.getItems().addAll(editItem, deleteItem);
+            ContextMenu contextMenu = createContentMenu(cell);
 
             cell.emptyProperty().addListener((obs, wasEmpty, isNowEmpty) -> {
                 if (isNowEmpty) {
@@ -94,7 +72,6 @@ public class MainSceneController {
         showAddDialog(Item.emptyItem);
     }
 
-    // TODO: rename to showSaveDialog
     private void showAddDialog(Item item) throws IOException {
         FXMLLoader loader = DependencyInjection.getLoader("add_dialog_scene.fxml");
         Parent root = loader.load();
@@ -111,6 +88,38 @@ public class MainSceneController {
         stage.show();
     }
 
+    private ContextMenu createContentMenu(ListCell<Item> cell) {
+        ContextMenu contextMenu = new ContextMenu();
+        MenuItem editItem = editMenuItem(cell);
+        MenuItem deleteItem = deleteMenuItem(cell);
+        contextMenu.getItems().addAll(editItem, deleteItem);
+        return contextMenu;
+    }
+
+    private MenuItem deleteMenuItem(ListCell<Item> cell) {
+        MenuItem deleteItem = new MenuItem();
+        deleteItem.setId("main_delete_context_menu");
+        deleteItem.textProperty().bind(Bindings.format("Delete \"%s\"", cell.textProperty()));
+        deleteItem.setOnAction(event -> model.deleteItem(cell.getItem()));
+        return deleteItem;
+    }
+
+    private MenuItem editMenuItem(ListCell<Item> cell) {
+        MenuItem editItem = new MenuItem();
+        editItem.setId("main_edit_context_menu");
+        editItem.textProperty().bind(Bindings.format("Edit \"%s\"", cell.textProperty()));
+        editItem.setOnAction(event -> {
+            Item item = cell.getItem();
+            try {
+                showAddDialog(item);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        return editItem;
+    }
+
+    // I do not know how to test this
     private static class HeadingOnlyCell extends ListCell<Item> {
 
         // from createDefaultCellImpl in ListViewSkin.java in package javafx.scene.control.skin;
