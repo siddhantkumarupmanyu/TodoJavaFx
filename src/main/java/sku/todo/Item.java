@@ -46,6 +46,6 @@ public class Item {
                 '}';
     }
 
-    public static Item emptyItem = new Item(-1, "", "");
+    public static Item emptyItem = new Item("", "");
 
 }

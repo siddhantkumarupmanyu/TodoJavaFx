@@ -22,8 +22,13 @@ public class InMemoryDatabase implements Database {
 
     @Override
     public void saveEdit(Item editedItem) {
-        items.remove(editedItem.id);
+        removeItem(editedItem);
         items.add(editedItem.id, editedItem);
+    }
+
+    @Override
+    public void delete(Item item) {
+        removeItem(item);
     }
 
     @Override
@@ -39,5 +44,9 @@ public class InMemoryDatabase implements Database {
     @Override
     public void notifyDataChanged() {
         listeners.announce().dataChanged();
+    }
+
+    private void removeItem(Item editedItem) {
+        items.remove(editedItem.id);
     }
 }

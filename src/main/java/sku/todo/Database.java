@@ -12,4 +12,6 @@ public interface Database {
     void addListener(DatabaseListener listener);
 
     void notifyDataChanged();
+
+    void delete(Item item);
 }
