@@ -15,7 +15,7 @@ public class AddDialogSceneModelTest {
 
     @Test
     public void addItem() {
-        model.addItem("heading", "content");
+        model.editSaveOrAdd("heading", "content");
 
         verify(database).addItem(new Item("heading", "content"));
     }

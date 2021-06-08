@@ -26,4 +26,8 @@ public class MainSceneModel implements DatabaseListener {
     public void dataChanged() {
         this.items.setAll(database.getItems());
     }
+
+    public void deleteItem(Item item) {
+        this.database.delete(item);
+    }
 }

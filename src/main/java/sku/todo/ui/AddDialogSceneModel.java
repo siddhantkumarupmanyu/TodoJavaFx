@@ -7,11 +7,25 @@ public class AddDialogSceneModel {
 
     private final Database database;
 
+    private Item currentItem;
+
     public AddDialogSceneModel(Database database) {
         this.database = database;
+        currentItem = Item.emptyItem;
     }
 
-    public void addItem(String heading, String content) {
-        database.addItem(new Item(heading, content));
+    public void setItem(Item item) {
+        currentItem = item;
+    }
+
+    public void editSaveOrAdd(String heading, String content) {
+        if (currentItem.isANewItem()) {
+            Item newItem = new Item(heading, content);
+            if (!newItem.isEmpty()) {
+                database.addItem(new Item(heading, content));
+            }
+        } else {
+            database.saveEdit(new Item(currentItem.id, heading, content));
+        }
     }
 }

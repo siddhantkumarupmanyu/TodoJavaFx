@@ -24,6 +24,10 @@ public class Item {
         return heading.isEmpty() && content.isEmpty();
     }
 
+    public boolean isANewItem() {
+        return id == -1;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

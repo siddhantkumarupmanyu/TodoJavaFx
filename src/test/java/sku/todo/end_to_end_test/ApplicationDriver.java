@@ -34,8 +34,6 @@ public class ApplicationDriver extends ApplicationTest {
 
         ListView<Item> listViewItems = getMainListView();
 
-        assertThat(listViewItems.getItems().get(index), is(equalTo(new Item(heading, content))));
-
         clickOn(getListCell(listViewItems, index));
 
         Label headingLabel = lookup("#main_heading").query();
@@ -52,9 +50,9 @@ public class ApplicationDriver extends ApplicationTest {
     public void deleteItem(int index) {
         ListView<Item> listView = getMainListView();
 
-        Cell<Item> cell0 = getListCell(listView, index);
+        Cell<Item> cell = getListCell(listView, index);
 
-        rightClickOn(cell0);
+        rightClickOn(cell);
 
         clickOn("#main_delete_context_menu");
     }
@@ -62,11 +60,17 @@ public class ApplicationDriver extends ApplicationTest {
     public void editItem(int index, String editedHeading, String editedContent) {
         ListView<Item> listView = getMainListView();
 
-        Cell<Item> cell0 = getListCell(listView, index);
+        Cell<Item> cell = getListCell(listView, index);
 
-        rightClickOn(cell0);
+        rightClickOn(cell);
 
-        clickOn("#main_delete_context_menu");
+        clickOn("#main_edit_context_menu");
+
+        clickOn("#dialog_heading_textfield");
+        write(editedHeading);
+        clickOn("#dialog_content_textarea");
+        write(editedContent);
+        clickOn("#dialog_add_button");
     }
 
     private ListView<Item> getMainListView() {

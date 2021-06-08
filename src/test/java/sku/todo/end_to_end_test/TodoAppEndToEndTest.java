@@ -52,10 +52,10 @@ public class TodoAppEndToEndTest {
         application.itemCount(2);
         application.isShowingItem("heading2", "content2", 1);
 
-        application.editItem(1, "EditedHeading", "editedContent");
+        application.editItem(1, "edit", "edit");
 
         application.itemCount(2);
         application.isShowingItem("heading1", "content1", 0);
-        application.isShowingItem("EditedHeading", "editedContent", 1);
+        application.isShowingItem("heading2edit", "content2edit", 1);
     }
 }

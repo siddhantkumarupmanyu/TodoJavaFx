@@ -24,11 +24,13 @@ public class InMemoryDatabase implements Database {
     public void saveEdit(Item editedItem) {
         removeItem(editedItem);
         items.add(editedItem.id, editedItem);
+        notifyDataChanged();
     }
 
     @Override
     public void delete(Item item) {
         removeItem(item);
+        notifyDataChanged();
     }
 
     @Override

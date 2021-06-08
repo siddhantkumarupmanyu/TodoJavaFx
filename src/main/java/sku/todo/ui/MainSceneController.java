@@ -5,6 +5,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -29,27 +30,30 @@ public class MainSceneController {
 
         // I do not know how to test this
         main_list_view.setCellFactory(param -> {
-            // todo: remove spikes
+
+            // TODO: refactor this code
             ListCell<Item> cell = new HeadingOnlyCell();
 
             ContextMenu contextMenu = new ContextMenu();
 
             MenuItem editItem = new MenuItem();
-            editItem.setId("main_edit_context");
+            editItem.setId("main_edit_context_menu");
             editItem.textProperty().bind(Bindings.format("Edit \"%s\"", cell.textProperty()));
             editItem.setOnAction(event -> {
                 Item item = cell.getItem();
-                // code to edit item...
+                try {
+                    showAddDialog(item);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             });
+
             MenuItem deleteItem = new MenuItem();
             deleteItem.setId("main_delete_context_menu");
             deleteItem.textProperty().bind(Bindings.format("Delete \"%s\"", cell.textProperty()));
-            deleteItem.setOnAction(event -> param.getItems().remove(cell.getItem()));
+            deleteItem.setOnAction(event -> model.deleteItem(cell.getItem()));
 
             contextMenu.getItems().addAll(editItem, deleteItem);
-
-            // will be useful for when editing. Do not know let's see
-//            cell.textProperty().bind(cell.itemProperty());
 
             cell.emptyProperty().addListener((obs, wasEmpty, isNowEmpty) -> {
                 if (isNowEmpty) {
@@ -71,7 +75,6 @@ public class MainSceneController {
             }
         });
 
-
     }
 
     @FXML
@@ -88,12 +91,22 @@ public class MainSceneController {
 
     @FXML
     void applyButtonClicked(ActionEvent event) throws IOException {
-        Parent root = DependencyInjection.load("add_dialog_scene.fxml");
+        showAddDialog(Item.emptyItem);
+    }
+
+    // TODO: rename to showSaveDialog
+    private void showAddDialog(Item item) throws IOException {
+        FXMLLoader loader = DependencyInjection.getLoader("add_dialog_scene.fxml");
+        Parent root = loader.load();
+
+        AddDialogSceneController controller = loader.getController();
+        controller.setItem(item);
+
+        Scene scene = new Scene(root);
 
         Stage stage = new Stage();
-
         stage.setTitle("Add");
-        stage.setScene(new Scene(root));
+        stage.setScene(scene);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.show();
     }
